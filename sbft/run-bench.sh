@@ -1,19 +1,28 @@
 #!/bin/bash
-#arg num_nodes #num_threads num_clients tx_rate [-drop]
 cd `dirname ${BASH_SOURCE-$0}`
 . env.sh
 
+if [ $# -lt 4 ]; then
+	echo "Usage: $0 <num_of_replicas> <num_of_clients> <num_of_faulty> <num_of_slow>"
+	exit 1
+fi
+
+NUM_OF_REPLICAS=$1
+NUM_OF_CLIENTS=$2
+NUM_OF_FAULTY=$3
+NUM_OF_SLOW=$4
+
 echo "run-bench.sh"
-./stop-all.sh $1 
+./stop-all.sh $NUM_OF_REPLICAS 
 
-./init-all.sh $1 
-./start-all.sh $1 
+./init-all.sh $NUM_OF_REPLICAS $NUM_OF_FAULTY
+./start-all.sh $NUM_OF_REPLICAS $NUM_OF_CLIENTS
 
-let M=2*$1
+let M=2*$NUM_OF_REPLICAS
 echo "sleep $M"
 sleep $M
 
-./start-multi-clients.sh $3 $1 $2 $4 $5 
+./start-multi-clients.sh $NUM_OF_REPLICAS $NUM_OF_CLIENTS $NUM_OF_FAULTY $NUM_OF_SLOW
 
 ./stop-all.sh $1
 

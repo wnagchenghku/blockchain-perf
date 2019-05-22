@@ -5,14 +5,9 @@ cd `dirname ${BASH_SOURCE-$0}`
 
 echo "start-multi-clients.sh"
 let i=0
-let IDX=$1/2
 for client in `cat $CLIENTS`; do
-  if [[ $i -lt $IDX ]]; then
     echo $client index $i
-    ssh -oStrictHostKeyChecking=no hkucs@$client $SBFT_HOME/start-clients.sh $3 $i $2 $4
-    #echo "rp 10"
-    #sleep 10
-  fi
+    ssh -oStrictHostKeyChecking=no hkucs@$client $SBFT_HOME/start-clients.sh $1 $2 $i $3 $4
   let i=$i+1
 done
 
@@ -22,6 +17,6 @@ echo "run for $M"
 sleep $M
 for client in `cat $CLIENTS`; do
   echo $client index $i
-  ssh -oStrictHostKeyChecking=no $client 'killall -KILL driver' 
+  ssh -oStrictHostKeyChecking=no hkucs@$client 'killall -KILL client' 
   let i=$i+1
 done

@@ -1,20 +1,18 @@
 #!/bin/bash
-# args=THREADS index N txrate
 echo IN START_CLIENTS $1 $2 $3 $4
 
 cd `dirname ${BASH_SOURCE-$0}`
 . env.sh
 
 LOG_DIR=$LOG_DIR/exp_$3"_"servers_$1"_"threads_$4"_"rates
-mkdir -p $LOG_DIR
-i=0
-for host in `cat $HOSTS`; do
-  let n=i/2
-  let i=i+1
-  if [[ $n -eq $2 ]]; then
-    cd $EXE_HOME
-    #both ycsbc and smallbank use the same driver
-    nohup ./driver -db ethereum -threads $1 -txrate $4 > $LOG_DIR/client_$host"_"$1 2>&1 &
-  fi
-done
 
+NUM_OF_ITERATIONS=2800
+INITIAL_RETRY_TIMEOUT_MILLI=1100
+MIN_RETRY_TIMEOUT_MILLI=1000
+MAX_RETRY_TIMEOUT_MILLI=2000
+SENDS_REQUEST_TO_ALL_REPLICAS_FIRST_THRESH=2
+SENDS_REQUEST_TO_ALL_REPLICAS_PERIOD_THRESH=2
+PERIODiC_RESET_THRESH=30
+
+cd $SBFT_HOME
+nohup $EXE_HOME/client -i $NUM_OF_ITERATIONS -r $1 -cl $2 -id $3 -f $4 -c $5 -cf "$EXE_HOME/scripts/sample_config.txt" -irt INITIAL_RETRY_TIMEOUT_MILLI -minirt MIN_RETRY_TIMEOUT_MILLI -maxrt MAX_RETRY_TIMEOUT_MILLI -srft SENDS_REQUEST_TO_ALL_REPLICAS_FIRST_THRESH -srpt SENDS_REQUEST_TO_ALL_REPLICAS_PERIOD_THRESH -prt PERIODiC_RESET_THRESH > $LOG_DIR/client_$host"_"$1 2>&1 &
