@@ -5,5 +5,11 @@ cd `dirname ${BASH_SOURCE-$0}`
 LOG_DIR=$LOG_DIR/$1
 mkdir -p $LOG_DIR
 
-cd $SBFT_HOME
-nohup $EXE_HOME/server -id $1 -r $2 -c $3 -cf "$EXE_HOME/scripts/sample_config.txt" > $LOG_DIR/client_$host"_"$1 2>&1 &
+SERVER="$SBFT_SOURCE/build/bftengine/tests/simpleTest/server"
+if ! [ -e $SERVER ]; then
+	echo "SBFT server executable not found: $SERVER"
+	exit 1
+fi
+
+cd $SBFT_SOURCE
+nohup $SERVER -id $1 -r $2 -c $3 -cf "$SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt" > $LOG_DIR/client_$host"_"$1 2>&1 &

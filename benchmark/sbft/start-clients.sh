@@ -14,5 +14,11 @@ SENDS_REQUEST_TO_ALL_REPLICAS_FIRST_THRESH=2
 SENDS_REQUEST_TO_ALL_REPLICAS_PERIOD_THRESH=2
 PERIODiC_RESET_THRESH=30
 
-cd $SBFT_HOME
-nohup $EXE_HOME/client -i $NUM_OF_ITERATIONS -r $1 -cl $2 -id $3 -f $4 -c $5 -cf "$EXE_HOME/scripts/sample_config.txt" -irt INITIAL_RETRY_TIMEOUT_MILLI -minirt MIN_RETRY_TIMEOUT_MILLI -maxrt MAX_RETRY_TIMEOUT_MILLI -srft SENDS_REQUEST_TO_ALL_REPLICAS_FIRST_THRESH -srpt SENDS_REQUEST_TO_ALL_REPLICAS_PERIOD_THRESH -prt PERIODiC_RESET_THRESH > $LOG_DIR/client_$host"_"$1 2>&1 &
+CLIENT="$SBFT_SOURCE/build/bftengine/tests/simpleTest/client"
+if ! [ -e $CLIENT ]; then
+	echo "SBFT client executable not found: $CLIENT"
+	exit 1
+fi
+
+cd $SBFT_SOURCE
+nohup $CLIENT -i $NUM_OF_ITERATIONS -r $1 -cl $2 -id $3 -f $4 -c $5 -cf "$SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt" -irt INITIAL_RETRY_TIMEOUT_MILLI -minirt MIN_RETRY_TIMEOUT_MILLI -maxrt MAX_RETRY_TIMEOUT_MILLI -srft SENDS_REQUEST_TO_ALL_REPLICAS_FIRST_THRESH -srpt SENDS_REQUEST_TO_ALL_REPLICAS_PERIOD_THRESH -prt PERIODiC_RESET_THRESH > $LOG_DIR/client_$host"_"$1 2>&1 &
