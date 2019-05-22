@@ -12,4 +12,4 @@ fi
 
 cd $SBFT_SOURCE
 HOST=`hostname`
-nohup $SERVER -id $1 -r $2 -c $3 -cf "$SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt" > $LOG_DIR/sbft_log_$HOST"_"$1 2>&1 &
+nohup $SERVER -debug -id $1 -r $2 -c $3 -cf "$SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt" > $LOG_DIR/sbft_log_$HOST"_"$1 2>&1 &
