@@ -3,7 +3,7 @@ cd `dirname ${BASH_SOURCE-$0}`
 . env.sh
 # args= <num_of_replicas> <num_of_clients> index <num_of_faulty> <num_of_slow> 
 
-LOG_DIR=$LOG_DIR/sbft_exp_$1"_"replicas_$2"_"clients
+LOG_DIR=$LOG_DIR/exp_$1"_"replicas_$2"_"clients
 
 NUM_OF_ITERATIONS=2800
 INITIAL_RETRY_TIMEOUT_MILLI=1100
