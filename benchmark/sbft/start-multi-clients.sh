@@ -11,7 +11,7 @@ for client in `cat $CLIENTS`; do
 done
 
 
-let M=$2*10+240
+let M=$1*10+240
 echo "run for $M"
 sleep $M
 for client in `cat $CLIENTS`; do
