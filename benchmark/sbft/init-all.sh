@@ -21,7 +21,6 @@ for host in `cat $HOSTS`; do
   fi
   echo " - $host:3410 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   let i=$i+1
-  echo $i
 done
 
 i=0
@@ -31,5 +30,4 @@ for client in `cat $CLIENTS`; do
   fi
   echo " - $host:4444 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   let i=$i+1
-  echo $i
 done
