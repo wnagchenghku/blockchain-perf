@@ -28,6 +28,6 @@ for client in `cat $CLIENTS`; do
   if [[ $i -eq 0 ]]; then
   	echo "clients_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
-  echo " - $host:4444 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+  echo " - $client:4444 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   let i=$i+1
 done
