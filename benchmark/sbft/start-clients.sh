@@ -21,4 +21,4 @@ fi
 
 HOST=`hostname`
 cd $SBFT_SOURCE
-nohup $CLIENT -i $NUM_OF_ITERATIONS -r $1 -cl $2 -id $3 -f $4 -c $5 -cf "$SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt" -irt $INITIAL_RETRY_TIMEOUT_MILLI -minirt $MIN_RETRY_TIMEOUT_MILLI -maxrt $MAX_RETRY_TIMEOUT_MILLI -srft $SENDS_REQUEST_TO_ALL_REPLICAS_FIRST_THRESH -srpt $SENDS_REQUEST_TO_ALL_REPLICAS_PERIOD_THRESH -prt $PERIODiC_RESET_THRESH > $LOG_DIR/client_$HOST"_"$3 2>&1 &
+nohup $CLIENT -i $NUM_OF_ITERATIONS -r $1 -cl $2 -id $3 -f $4 -c $5 -cf "$SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt" -irt $INITIAL_RETRY_TIMEOUT_MILLI -minrt $MIN_RETRY_TIMEOUT_MILLI -maxrt $MAX_RETRY_TIMEOUT_MILLI -srft $SENDS_REQUEST_TO_ALL_REPLICAS_FIRST_THRESH -srpt $SENDS_REQUEST_TO_ALL_REPLICAS_PERIOD_THRESH -prt $PERIODiC_RESET_THRESH > $LOG_DIR/client_$HOST"_"$3 2>&1 &
