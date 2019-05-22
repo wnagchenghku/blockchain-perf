@@ -16,9 +16,9 @@ rm -f $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
 i=0
 for host in `cat $HOSTS`; do
   if [[ $i -eq 0 ]]; then
-  	echo "replicas_config:"
-  echo " - $host:3410 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+  	echo "replicas_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
+  echo " - $host:3410 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   let i=$i+1
   echo $i
 done
@@ -26,9 +26,9 @@ done
 i=0
 for client in `cat $CLIENTS`; do
   if [[ $i -eq 0 ]]; then
-  	echo "clients_config:"
-  echo " - $host:4444 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+  	echo "clients_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
+  echo " - $host:4444 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   let i=$i+1
   echo $i
 done
