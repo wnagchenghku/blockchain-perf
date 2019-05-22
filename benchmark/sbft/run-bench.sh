@@ -12,6 +12,12 @@ NUM_OF_CLIENTS=$2
 NUM_OF_FAULTY=$3
 NUM_OF_SLOW=$4
 
+
+if [[ $(expr 3*$NUM_OF_FAULTY+2*NUM_OF_SLOW+1) -ne "$NUM_OF_REPLICAS" ]]; then
+	echo "N = 3f + 2c + 1 is not satisfied"
+	exit 1
+fi
+
 echo "run-bench.sh"
 ./stop-all.sh $NUM_OF_REPLICAS 
 

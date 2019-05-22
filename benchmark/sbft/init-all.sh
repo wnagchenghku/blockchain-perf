@@ -5,9 +5,10 @@ cd `dirname ${BASH_SOURCE-$0}`
 
 echo "Generating new keys..."
 
+cd $SBFT_SOURCE
+
 rm -f private_replica_*
 
-cd $SBFT_SOURCE
 $SBFT_SOURCE/build/tools/GenerateConcordKeys -n $1 -f $2 -o private_replica_
 
 
