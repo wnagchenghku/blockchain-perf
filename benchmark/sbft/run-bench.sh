@@ -21,7 +21,7 @@ fi
 echo "run-bench.sh"
 ./stop-all.sh $NUM_OF_REPLICAS 
 
-./init-all.sh $NUM_OF_REPLICAS $NUM_OF_FAULTY
+./init-all.sh $NUM_OF_REPLICAS $NUM_OF_FAULTY $NUM_OF_CLIENTS
 ./start-all.sh $NUM_OF_REPLICAS $NUM_OF_CLIENTS
 
 let M=2*$NUM_OF_REPLICAS

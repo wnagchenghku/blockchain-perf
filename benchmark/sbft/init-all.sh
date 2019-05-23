@@ -51,7 +51,7 @@ while :; do
     let port=4444+$i
     echo " - $client:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
     let i=$i+1
-    if [[ "$i" -lt "$1" ]]; then
+    if [[ "$i" -lt "$3" ]]; then
       continue
     else
       finished=true
