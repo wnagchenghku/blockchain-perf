@@ -12,7 +12,7 @@ while :; do
     let i=$i+1
   done
 
-  if [[ $i -lt $2 ]]; then
+  if [[ "$i" -lt "$2" ]]; then
   	continue
   fi
 

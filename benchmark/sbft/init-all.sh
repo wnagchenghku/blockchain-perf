@@ -27,7 +27,7 @@ while :; do
     let i=$i+1
   done
     
-  if [[ "$i" -lt $1 ]]; then
+  if [[ "$i" -lt "$1" ]]; then
     continue
   fi
 
@@ -46,7 +46,7 @@ while :; do
     let i=$i+1
   done
 
-  if [[ $i -lt $1 ]]; then
+  if [[ "$i" -lt "$1" ]]; then
     continue
   fi
 
