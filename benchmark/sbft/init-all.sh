@@ -14,20 +14,41 @@ $SBFT_SOURCE/build/tools/GenerateConcordKeys -n $1 -f $2 -o private_replica_
 
 echo "Generating sample_config.txt..."
 rm -f $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+
 i=0
-for host in `cat $HOSTS`; do
+while :; do
   if [[ $i -eq 0 ]]; then
-  	echo "replicas_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+    echo "replicas_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
-  echo " - $host:3410 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
-  let i=$i+1
+
+  for host in `cat $HOSTS`; do
+    let port=3410+$i
+    echo " - $host:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+    let i=$i+1
+  done
+    
+  if [[ "$i" -lt $1 ]]; then
+    continue
+  fi
+
+  break
 done
 
 i=0
-for client in `cat $CLIENTS`; do
+while :; do
   if [[ $i -eq 0 ]]; then
-  	echo "clients_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+    echo "clients_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
-  echo " - $client:4444 " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
-  let i=$i+1
+
+  for client in `cat $CLIENTS`; do
+    let port=4444+$i
+    echo " - $client:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+    let i=$i+1
+  done
+
+  if [[ $i -lt $1 ]]; then
+    continue
+  fi
+
+  break
 done
