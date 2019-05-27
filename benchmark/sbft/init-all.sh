@@ -23,8 +23,12 @@ while :; do
   fi
 
   for host in `cat $HOSTS`; do
+
+  for i in `cat $HOSTS | cut -d "." -f 4`; do
+    let suffix=$i-159
+    ip="10.22.1.$suffix"
     let port=3410+$i
-    echo " - $host:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+    echo " - $ip:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
     let i=$i+1
 
     if [[ "$i" -lt "$1" ]]; then
@@ -47,9 +51,11 @@ while :; do
     echo "clients_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
 
-  for client in `cat $CLIENTS`; do
+  for i in `cat $CLIENTS | cut -d "." -f 4`; do
+    let suffix=$i-159
+    ip="10.22.1.$suffix"
     let port=4444+$i
-    echo " - $client:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
+    echo " - $ip:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
     let i=$i+1
     if [[ "$i" -lt "$3" ]]; then
       continue

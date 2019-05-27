@@ -28,8 +28,11 @@ let M=2*$NUM_OF_REPLICAS
 echo "sleep $M"
 sleep $M
 
+./start-traffic-control.sh
+
 ./start-multi-clients.sh $NUM_OF_REPLICAS $NUM_OF_CLIENTS $NUM_OF_FAULTY $NUM_OF_SLOW
 
+./stop-traffic-control.sh
 ./stop-all.sh $1
 
 sleep 5
