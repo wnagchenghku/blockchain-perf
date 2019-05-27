@@ -22,8 +22,6 @@ while :; do
     echo "replicas_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
 
-  for host in `cat $HOSTS`; do
-
   for i in `cat $HOSTS | cut -d "." -f 4`; do
     let suffix=$i-159
     ip="10.22.1.$suffix"
