@@ -22,8 +22,8 @@ while :; do
     echo "replicas_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
 
-  for i in `cat $HOSTS | cut -d "." -f 4`; do
-    let suffix=$i-159
+  for j in `cat $HOSTS | cut -d "." -f 4`; do
+    let suffix=$j-159
     ip="10.22.1.$suffix"
     let port=3410+$i
     echo " - $ip:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
@@ -49,8 +49,8 @@ while :; do
     echo "clients_config:" >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt
   fi
 
-  for i in `cat $CLIENTS | cut -d "." -f 4`; do
-    let suffix=$i-159
+  for j in `cat $CLIENTS | cut -d "." -f 4`; do
+    let suffix=$j-159
     ip="10.22.1.$suffix"
     let port=4444+$i
     echo " - $ip:$port " >> $SBFT_SOURCE/build/bftengine/tests/simpleTest/scripts/sample_config.txt

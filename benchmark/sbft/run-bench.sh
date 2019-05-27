@@ -19,7 +19,8 @@ if [[ $(expr 3*$NUM_OF_FAULTY+2*NUM_OF_SLOW+1) -ne "$NUM_OF_REPLICAS" ]]; then
 fi
 
 echo "run-bench.sh"
-./stop-all.sh $NUM_OF_REPLICAS 
+./stop-all.sh $NUM_OF_REPLICAS
+./stop-traffic-control.sh
 
 ./init-all.sh $NUM_OF_REPLICAS $NUM_OF_FAULTY $NUM_OF_CLIENTS
 ./start-all.sh $NUM_OF_REPLICAS $NUM_OF_CLIENTS
